@@ -20,7 +20,8 @@ const initialState = {
 
 const errorMessages = {
   email: "Please enter a valid email address",
-  password: "Password must be at least 4 characters long",
+  password:
+    "Password must contain at least one lowercase letter, one uppercase letter, and one number. It should be at least 6 characters long.",
   terms: "You must accept the terms",
 };
 
@@ -34,6 +35,11 @@ export default function Login() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
+
+  const isPasswordValid = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+    return passwordRegex.test(password);
+  };
 
   const handleChange = (event) => {
     let { name, value, type, checked } = event.target;
@@ -50,7 +56,11 @@ export default function Login() {
     }
 
     if (name === "password") {
-      setErrors({ ...errors, [name]: value.trim().length < 4 });
+      if (isPasswordValid(value)) {
+        setErrors({ ...errors, [name]: false });
+      } else {
+        setErrors({ ...errors, [name]: true });
+      }
     }
 
     if (name === "terms") {
@@ -106,7 +116,7 @@ export default function Login() {
             type="password"
             value={form.password}
             onChange={handleChange}
-            invalid={!!errors.password} // Mark input as invalid if there's an error
+            invalid={!!errors.password}
           />
           {errors.password && (
             <FormFeedback>{errorMessages.password}</FormFeedback>

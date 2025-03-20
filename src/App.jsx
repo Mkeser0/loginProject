@@ -10,7 +10,6 @@ function App() {
     <div className="app">
       <Switch>
         <Route exact path="/">
-          <p>burda olacak logiiin</p>
           <Login />
         </Route>
         <Route path="/home">
