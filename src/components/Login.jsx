@@ -10,6 +10,7 @@ import {
   Button,
 } from "reactstrap";
 
+// 4. commit için:D
 import { useHistory } from "react-router-dom"; // Import useHistory for navigation
 
 const initialState = {
@@ -22,7 +23,7 @@ const errorMessages = {
   email: "Please enter a valid email address",
   password:
     "Password must contain at least one lowercase letter, one uppercase letter, and one number. It should be at least 6 characters long.",
-  terms: "You must accept the terms",
+  terms: "You must accept the terms!",
 };
 
 export default function Login() {
