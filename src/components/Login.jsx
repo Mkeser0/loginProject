@@ -103,7 +103,11 @@ export default function Login() {
             onChange={handleChange}
             invalid={!!errors.email}
           />
-          {errors.email && <FormFeedback>{errorMessages.email}</FormFeedback>}
+          {errors.email && (
+            <FormFeedback data-cy="error-message">
+              {errorMessages.email}
+            </FormFeedback>
+          )}
         </FormGroup>
       </Col>
       <Col md={6}>
@@ -119,7 +123,9 @@ export default function Login() {
             invalid={!!errors.password}
           />
           {errors.password && (
-            <FormFeedback>{errorMessages.password}</FormFeedback>
+            <FormFeedback data-cy="error-message">
+              {errorMessages.password}
+            </FormFeedback>
           )}
         </FormGroup>
         <FormGroup check>
@@ -134,7 +140,11 @@ export default function Login() {
           <Label check for="exampleCheck">
             Check me out
           </Label>
-          {errors.terms && <FormFeedback>{errorMessages.terms}</FormFeedback>}
+          {errors.terms && (
+            <FormFeedback data-cy="error-message">
+              {errorMessages.terms}
+            </FormFeedback>
+          )}
         </FormGroup>
         <FormGroup className="text-center p-4">
           <Button disabled={!isValid} color="primary">
